@@ -1,10 +1,14 @@
 package com.company.demo;
 
+import com.company.demo.component.CityFragment;
+import com.company.demo.component.CityFragmentLoader;
 import com.google.common.base.Strings;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
+import io.jmix.flowui.sys.registration.ComponentRegistration;
+import io.jmix.flowui.sys.registration.ComponentRegistrationBuilder;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -52,5 +56,12 @@ public class FlowuiDemoApplication implements AppShellConfigurator {
                 + "http://localhost:"
                 + environment.getProperty("local.server.port")
                 + Strings.nullToEmpty(environment.getProperty("server.servlet.context-path")));
+    }
+
+    @Bean
+    public ComponentRegistration cityFragment() {
+        return ComponentRegistrationBuilder.create(CityFragment.class)
+                .withComponentLoader("cityFragment", CityFragmentLoader.class)
+                .build();
     }
 }

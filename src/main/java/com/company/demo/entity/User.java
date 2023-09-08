@@ -56,8 +56,19 @@ public class User implements JmixUserDetails, HasTimeZone {
     @Column(name = "TIME_ZONE_ID")
     protected String timeZoneId;
 
+    @Column(name = "DESCRIPTION")
+    private String description;
+
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public UUID getId() {
         return id;
